@@ -6,7 +6,7 @@ const timer = (deadline) => {
   const getTimeRemaining = () => {
     let dateStop = new Date(deadline).getTime();
     let dateNow = new Date().getTime();
-    let timeRemaining = (dateStop - dateNow) / 1000;
+    const timeRemaining = (dateStop - dateNow) / 1000;
     // let days = Math.floor(timeRemaining / 60 / 60);
     let hours = Math.floor(timeRemaining / 60 / 60)
       .toString()
@@ -22,18 +22,20 @@ const timer = (deadline) => {
   };
 
   const updateClock = () => {
-    let getTime = getTimeRemaining();
+    const getTime = getTimeRemaining();
 
     if (getTime.timeRemaining < 0) {
       timerHours.textContent = '00';
       timerMinutes.textContent = '00';
       timerSeconds.textContent = '00';
+      clearInterval(updateClock);
     } else {
       timerHours.textContent = getTime.hours;
       timerMinutes.textContent = getTime.minutes;
       timerSeconds.textContent = getTime.seconds;
     }
   };
+  updateClock();
   setInterval(updateClock, 1000);
 };
 
