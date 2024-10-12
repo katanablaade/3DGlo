@@ -9,6 +9,16 @@ const menu = () => {
     menu.classList.toggle('active-menu');
   };
 
+  const smoothScroll = (element) => {
+    if (element) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'start',
+      });
+    }
+  };
+
   menuBtn.addEventListener('click', handleMenu);
   closeBtn.addEventListener('click', handleMenu);
 
@@ -17,13 +27,7 @@ const menu = () => {
     const targetId = smoothBtn.getAttribute('href');
     const targetElement = document.querySelector(targetId);
 
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'start',
-      });
-    }
+    smoothScroll(targetElement);
   });
 
   menuItems.forEach((menuItem) => {
@@ -33,14 +37,7 @@ const menu = () => {
       const targetId = menuItem.getAttribute('href');
       const targetElement = document.querySelector(targetId);
 
-      if (targetElement) {
-        targetElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-          inline: 'start',
-        });
-      }
-
+      smoothScroll(targetElement);
       handleMenu();
     });
   });

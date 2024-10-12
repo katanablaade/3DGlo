@@ -28,15 +28,16 @@ const timer = (deadline) => {
       timerHours.textContent = '00';
       timerMinutes.textContent = '00';
       timerSeconds.textContent = '00';
-      clearInterval(updateClock);
+      clearInterval(intervalId);
     } else {
       timerHours.textContent = getTime.hours;
       timerMinutes.textContent = getTime.minutes;
       timerSeconds.textContent = getTime.seconds;
     }
   };
+
+  const intervalId = setInterval(updateClock, 1000);
   updateClock();
-  setInterval(updateClock, 1000);
 };
 
 export default timer;

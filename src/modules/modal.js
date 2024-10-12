@@ -7,19 +7,19 @@ const modal = () => {
   let idInterval;
 
   const animationModalOpen = () => {
-    count++;
+    count += 0.05;
     idInterval = requestAnimationFrame(animationModalOpen);
 
-    if (count < 30) {
-      modal.style.opacity = count / 30;
+    if (count < 1) {
+      modal.style.opacity = count;
     } else {
       cancelAnimationFrame(idInterval);
     }
   };
 
   const animationModalClose = () => {
-    count--;
-    modal.style.opacity = count / 30;
+    count -= 0.05;
+    modal.style.opacity = count;
 
     if (count > 0) {
       idInterval = requestAnimationFrame(animationModalClose);
@@ -41,7 +41,7 @@ const modal = () => {
 
   closeBtn.addEventListener('click', () => {
     if (document.documentElement.clientWidth > 768) {
-      count = 30;
+      count = 1;
       requestAnimationFrame(animationModalClose);
     } else {
       modal.style.display = 'none';
