@@ -7,31 +7,47 @@ const validate = () => {
 
   const nameValidate = () => {
     nameInput.forEach((input) => {
-      input.addEventListener('input', () => {
-        input.value = input.value.replace(/[^а-яА-Я- ]/, '');
+      input.addEventListener('blur', () => {
+        input.value = input.value.replace(/[^а-яА-Я- ]+/g, '');
+        input.value = input.value.replace(/ +/g, ' ');
+        input.value = input.value.replace(/-+/g, '-');
+        input.value = input.value.replace(/^[ -]+|[ -]+$/g, '');
+        input.value = input.value.replace(
+          /([а-яА-Я]{1})([а-яА-Я]*)/g,
+          (match, $1, $2) => {
+            return $1.toUpperCase() + $2.toLowerCase();
+          }
+        );
       });
     });
   };
 
   const emailValidate = () => {
     emailInput.forEach((input) => {
-      input.addEventListener('input', () => {
+      input.addEventListener('blur', () => {
         input.value = input.value.replace(/[^@\-_.!~*'\w]+/, '');
+        input.value = input.value.replace(/-+/g, '-');
+        input.value = input.value.replace(/^[ -]+|[ -]+$/g, '');
       });
     });
   };
 
   const phoneValidate = () => {
     phoneInput.forEach((input) => {
-      input.addEventListener('input', () => {
+      input.addEventListener('blur', () => {
         input.value = input.value.replace(/[^()\-\d]+/, '');
+        input.value = input.value.replace(/-+/g, '-');
+        input.value = input.value.replace(/^[ -]+|[ -]+$/g, '');
       });
     });
   };
 
   const messageValidate = () => {
-    messageInput.addEventListener('input', () => {
-      messageInput.value = messageInput.value.replace(/[^а-яА-Я- ]/, '');
+    messageInput.addEventListener('blur', () => {
+      messageInput.value = messageInput.value.replace(/[^а-яА-Я- ]+/g, '');
+      messageInput.value = messageInput.value.replace(/ +/g, ' ');
+      messageInput.value = messageInput.value.replace(/-+/g, '-');
+      messageInput.value = messageInput.value.replace(/^[ -]+|[ -]+$/g, '');
     });
   };
 
