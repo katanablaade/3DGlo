@@ -2,7 +2,6 @@ const menu = () => {
   const menu = document.querySelector('menu');
   const menuItems = menu.querySelectorAll('ul>li>a');
   const smoothBtn = document.querySelector('a[href="#service-block"]');
-  const main = document.querySelector('main');
   const body = document.querySelector('body');
 
   const toggleMenu = () => {
