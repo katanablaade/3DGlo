@@ -5,6 +5,20 @@ const menu = () => {
   const body = document.querySelector('body');
 
   const toggleMenu = () => {
+    const handleMenu = () => {
+      menu.classList.toggle('active-menu');
+    };
+
+    const smoothScroll = (element) => {
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'start',
+        });
+      }
+    };
+
     body.addEventListener('click', (e) => {
       if (e.target.closest('.menu')) {
         handleMenu();
@@ -38,20 +52,6 @@ const menu = () => {
         });
       }
     });
-  };
-
-  const smoothScroll = (element) => {
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'start',
-      });
-    }
-  };
-
-  const handleMenu = () => {
-    menu.classList.toggle('active-menu');
   };
 
   toggleMenu();
