@@ -4,6 +4,7 @@ import modal from './modules/modal';
 import validate from './modules/validate';
 import tabs from './modules/tabs';
 import slider from './modules/slider';
+import carousel from './modules/carousel';
 
 const sliderClasses = {
   sliderBlock: '.portfolio-content',
@@ -19,3 +20,4 @@ modal();
 validate();
 tabs();
 slider(sliderClasses);
+carousel();
