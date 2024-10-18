@@ -1,3 +1,5 @@
+import { animate } from './helpers';
+
 const calc = (price = 100) => {
   const calcBlock = document.querySelector('.calc-block');
   const calcType = document.querySelector('.calc-type');
@@ -31,37 +33,15 @@ const calc = (price = 100) => {
       totalValue = 0;
     }
 
-    animationTotal(totalValue);
-  };
-
-  const animationTotal = (targetValue) => {
-    let prevValue = +total.textContent;
-    let result = prevValue;
-
-    const changeNumber =
-      prevValue < targetValue
-        ? Math.floor((targetValue - prevValue) / 17)
-        : Math.floor((prevValue - targetValue) / 17);
-
-    const intervalId = setInterval(() => {
-      if (prevValue < targetValue) {
-        result = result + changeNumber;
-        if (result < targetValue) {
-          total.textContent = result;
-        } else {
-          total.textContent = targetValue;
-          clearInterval(intervalId);
-        }
-      } else {
-        result = result - changeNumber;
-        if (result > targetValue) {
-          total.textContent = result;
-        } else {
-          total.textContent = targetValue;
-          clearInterval(intervalId);
-        }
-      }
-    }, 50);
+    animate({
+      duration: 500,
+      timing(timeFraction) {
+        return timeFraction;
+      },
+      draw(progress) {
+        total.textContent = Math.round(totalValue * progress);
+      },
+    });
   };
 
   calcBlock.addEventListener('input', (e) => {
