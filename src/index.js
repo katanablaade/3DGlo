@@ -5,6 +5,7 @@ import validate from './modules/validate';
 import tabs from './modules/tabs';
 import slider from './modules/slider';
 import carousel from './modules/carousel';
+import calc from './modules/calc';
 
 const sliderClasses = {
   sliderBlock: '.portfolio-content',
@@ -21,3 +22,4 @@ validate();
 tabs();
 slider(sliderClasses);
 carousel();
+calc(100);
