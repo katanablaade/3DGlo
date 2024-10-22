@@ -35,7 +35,7 @@ const validate = () => {
   const phoneValidate = () => {
     phoneInput.forEach((input) => {
       input.addEventListener('blur', () => {
-        input.value = input.value.replace(/[^()\-\d]+/, '');
+        input.value = input.value.replace(/[^+()\-\d]+/, '');
         input.value = input.value.replace(/-+/g, '-');
         input.value = input.value.replace(/^[ -]+|[ -]+$/g, '');
       });
@@ -44,7 +44,10 @@ const validate = () => {
 
   const messageValidate = () => {
     messageInput.addEventListener('blur', () => {
-      messageInput.value = messageInput.value.replace(/[^а-яА-Я- ]+/g, '');
+      messageInput.value = messageInput.value.replace(
+        /[^а-яА-Я- \d.,:;?]+/g,
+        ''
+      );
       messageInput.value = messageInput.value.replace(/ +/g, ' ');
       messageInput.value = messageInput.value.replace(/-+/g, '-');
       messageInput.value = messageInput.value.replace(/^[ -]+|[ -]+$/g, '');
