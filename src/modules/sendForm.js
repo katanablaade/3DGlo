@@ -1,14 +1,13 @@
 const sendForm = ({ formId, someElem = [] }) => {
   formId.forEach((forms) => {
     const form = document.getElementById(forms);
+    const statusBlock = document.createElement('div');
+    const errorText = 'Ошибка...';
+    const successText = 'Спасибо! Наш менеджер с вами свяжется!';
 
     if (forms === 'form3') {
       form.classList.add('another-color');
     }
-
-    const statusBlock = document.createElement('div');
-    const errorText = 'Ошибка...';
-    const successText = 'Спасибо! Наш менеджер с вами свяжется!';
 
     const validate = (list) => {
       let success = true;
@@ -48,13 +47,15 @@ const sendForm = ({ formId, someElem = [] }) => {
         }
       });
 
-      console.log('submit');
-
       if (validate(formElements)) {
         sendData(formBody)
           .then((data) => {
             statusBlock.textContent = successText;
             form.append(statusBlock);
+
+            setTimeout(() => {
+              statusBlock.remove(form);
+            }, 5000);
 
             formElements.forEach((input) => {
               input.value = '';

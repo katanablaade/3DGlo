@@ -2,10 +2,11 @@ const timer = (deadline) => {
   const timerHours = document.getElementById('timer-hours');
   const timerMinutes = document.getElementById('timer-minutes');
   const timerSeconds = document.getElementById('timer-seconds');
+  let intervalId;
 
   const getTimeRemaining = () => {
-    let dateStop = new Date(deadline).getTime();
-    let dateNow = new Date().getTime();
+    const dateStop = new Date(deadline).getTime();
+    const dateNow = new Date().getTime();
     const timeRemaining = (dateStop - dateNow) / 1000;
     // let days = Math.floor(timeRemaining / 60 / 60);
     let hours = Math.floor(timeRemaining / 60 / 60)
@@ -36,7 +37,7 @@ const timer = (deadline) => {
     }
   };
 
-  const intervalId = setInterval(updateClock, 1000);
+  intervalId = setInterval(updateClock, 1000);
   updateClock();
 };
 
