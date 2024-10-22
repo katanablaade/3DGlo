@@ -2,8 +2,11 @@ const sendForm = ({ formId, someElem = [] }) => {
   formId.forEach((forms) => {
     const form = document.getElementById(forms);
 
+    if (forms === 'form3') {
+      form.classList.add('another-color');
+    }
+
     const statusBlock = document.createElement('div');
-    const loadText = 'Загрузка...';
     const errorText = 'Ошибка...';
     const successText = 'Спасибо! Наш менеджер с вами свяжется!';
 
@@ -28,7 +31,7 @@ const sendForm = ({ formId, someElem = [] }) => {
       const formData = new FormData(form);
       const formBody = {};
 
-      statusBlock.textContent = loadText;
+      statusBlock.innerHTML = '<div class="lds-dual-ring"></div>';
       form.append(statusBlock);
 
       formData.forEach((value, key) => {
@@ -51,6 +54,7 @@ const sendForm = ({ formId, someElem = [] }) => {
         sendData(formBody)
           .then((data) => {
             statusBlock.textContent = successText;
+            form.append(statusBlock);
 
             formElements.forEach((input) => {
               input.value = '';
