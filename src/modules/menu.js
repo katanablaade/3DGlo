@@ -32,6 +32,7 @@ const menu = () => {
       }
 
       if (e.target.closest('.close-btn')) {
+        e.preventDefault();
         handleMenu();
         return;
       }
